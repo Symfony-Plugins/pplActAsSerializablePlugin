@@ -1,22 +1,22 @@
 <?php
 
-class RattableListener extends Doctrine_Record_Listener
+class SerializableListener extends Doctrine_Record_Listener
 {
   /**
-     * Instance of Doctrine_Auditlog
-     *
-     * @var Doctrine_AuditLog
-     */
-  protected $_rattable;
+   * Instance of Doctrine_Auditlog
+   *
+   * @var Doctrine_AuditLog
+   */
+  protected $_serializable;
 
-    /**
-     * Instantiate AuditLog listener and set the Doctrine_AuditLog instance to the class
-     *
-     * @param   Doctrine_AuditLog $auditLog
-     * @return  void
-     */
-  public function __construct(Doctrine_Rattable $rattable)
+
+  public function __construct(Doctrine_Serializable $serializable)
   {
-    $this->_rattable = $rattable;
+    $this->_serializable = $serializable;
+  }
+
+  public function preSave(Doctrine_Event $event)
+  {
+
   }
 }
