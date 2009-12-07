@@ -1,0 +1,66 @@
+# sfActAsSerializablePlugin #
+
+## Introduction ##
+
+Enable a model to have a personalized serial, usefull for billing purpose :
+
+**Case 1 :** You want to have a billing serial running on the current year + an offer one
+
+The first offer you make get : 1, then 2, then 3
+In the same time you make bills and they get 1, 2, 3 depending on the year
+
+When the year change, the serial reset
+
+You have option such as number format 1 or 0001, what's the parameter for the serial reset, etc.
+
+### Features ###
+
+ * get a serial formated as you want, depending on year
+ 
+### How it works ###
+
+Giving Rattable behavior to an object the same as [Doctrine I18n](http://www.doctrine-project.org/documentation/manual/1_1/en/behaviors#core-behaviors:i18n)
+
+It create an object_rate table with how many column as criterias OR default one : rate
+
+Example :
+
+    Sale:
+      actAs: 
+        Serializable:
+          parameter: year # or custom (see customize serial reset below)
+          format: '- 0000' # use sfNumberFormat string
+
+That's all!
+
+## Installation ##
+
+### Symfony way ###
+
+ * go to your project's root
+ * Install the plugin: 
+        
+        ./symfony plugin-install http://svn.symfony-project.com/plugins/sfActAsSerializablePlugin/branches/1.4
+
+### SVN way ###
+
+ * from the terminal, go to your plugin directory:
+ * enter
+ 
+        svn pe svn:externals .
+ 
+ * write a line
+ 
+        sfActAsSerializablePlugin http://svn.symfony-project.com/plugins/sfActAsSerializablePlugin/branches/1.4
+ 
+ * close the editor
+ * do a ``svn update`` an that's all
+
+## Unit testing ##
+TODO
+
+## Side notes ##
+I won't release pear packages, if someone is interested in managing them, let met know and I will add you as package manager.
+
+## License and credits ##
+This plugin has been created by [Mickael Kurmann](http://www.vieuxsteak.ch/) and is licensed under the MIT license.
