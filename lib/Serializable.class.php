@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Rattable
+ * Serializable
  *
  */
 class Doctrine_Serializable extends Doctrine_Record_Generator
@@ -44,10 +44,7 @@ class Doctrine_Serializable extends Doctrine_Record_Generator
    */
   public function setTableDefinition()
   {
-    if($this->_options['parameter'])
-    {
-
-    }
+    $this->_options['parameter'] = ($this->_options['parameter'] != 'year') ? 'custom' :  $this->_options['parameter'];
 
     if($this->_options['format'])
     {
