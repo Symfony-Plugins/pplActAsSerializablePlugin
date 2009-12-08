@@ -39,13 +39,18 @@ class Serializable extends Doctrine_Template
    *
    * @return int formated serial
    */
-  public function getNext()
+  public function getSerial()
+  {
+    
+  }
+
+  protected function getNext()
   {
     
   }
 
 
-  public function resetNeeded()
+  protected function resetNeeded()
   {
     
   }
