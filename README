@@ -28,7 +28,6 @@ Example :
     Sale:
       actAs: 
         Serializable:
-          parameter: year # or custom (see customize serial reset below)
           format: '0000' # use sfNumberFormat string
 
 That's all!
