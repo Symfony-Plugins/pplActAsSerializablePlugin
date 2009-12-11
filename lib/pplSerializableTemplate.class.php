@@ -68,21 +68,6 @@ class pplSerializable extends Doctrine_Template
         return $this->getSerialQuery()->limit(1)->execute(array(), Doctrine::HYDRATE_SINGLE_SCALAR);
     }
 
-    /**
-     *
-     * @return Doctrine_Query
-     */
-    public function getSerialQuery()
-    {
-        $model_class = get_class($this->getInvoker());
-        $year = $this->getCurrentYear();
-
-        return Doctrine_Query::create()
-                ->select('ps.serial')
-                ->from($this->getSerializable()->getOption('className') . ' ps')
-                ->where('ps.model_class = ? AND ps.ppl_year = ?', array($model_class, $year));
-    }
-
     public function getCurrentYear()
     {
         return date('y', time());
@@ -106,6 +91,21 @@ class pplSerializable extends Doctrine_Template
     public function resetNeeded()
     {
         return $this->getYear() < $this->getCurrentYear();
+    }
+
+    /**
+     *
+     * @return Doctrine_Query
+     */
+    public function getSerialQuery()
+    {
+        $model_class = get_class($this->getInvoker());
+        $year = $this->getCurrentYear();
+
+        return Doctrine_Query::create()
+                ->select('ps.serial')
+                ->from($this->getSerializable()->getOption('className') . ' ps')
+                ->where('ps.model_class = ? AND ps.ppl_year = ?', array($model_class, $year));
     }
 
     protected function getFormat()
